@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Speed check page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h2>Yashaswini Sarabu speed check</h2>
+
+  <div id="target">Your time: </div>
+    <div id="counter">Count: </div>
+    <button onclick="startTimer()">Start Timer</button>
+    <button onclick="recordTime()">Stop Timer</button>
+
+    <script>
+        var stopTime = undefined;
+        var startTime = undefined;
+        var timerInterval = undefined;
+    
+        function startTimer() {
+          // Start the timer
+          startTime = Date.now();
+          timerInterval = setInterval(updateCounter, 10); // Update every 10 milliseconds
+          var randomTime = Math.random() * 5000; // Random time between 0 and 5000 milliseconds
+          setTimeout(recordTime, randomTime); // Stop the timer after the random time
+        }
+    
+        function recordTime() {
+          stopTime = Date.now();
+          clearInterval(timerInterval); // Stop the timer interval
+          updateCounter(); // Update the counter one last time
+          console.log("Stop time recorded: " + stopTime);
+          
+        }
+    
+        function updateCounter() {
+          var currentTime = Date.now();
+          var elapsedTime = currentTime - startTime;
+          document.getElementById("counter").innerText = "Count: " + elapsedTime + "ms";
+        }
+      </script>
+</body>
+</html>
