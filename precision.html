@@ -11,39 +11,45 @@
 </head>
 <body>
 
-  <h2>Yashaswini Sarabu speed check</h2>
-
-  <div id="target">Your time: </div>
-    <div id="counter">Count: </div>
-    <button onclick="startTimer()">Start Timer</button>
-    <button onclick="recordTime()">Stop Timer</button>
-
     <script>
+        let reactTime;
         var stopTime = undefined;
-        var startTime = undefined;
         var timerInterval = undefined;
-    
-        function startTimer() {
-          // Start the timer
-          startTime = Date.now();
-          timerInterval = setInterval(updateCounter, 10); // Update every 10 milliseconds
-          var randomTime = Math.random() * 5000; // Random time between 0 and 5000 milliseconds
-          setTimeout(recordTime, randomTime); // Stop the timer after the random time
-        }
-    
+
+
         function recordTime() {
-          stopTime = Date.now();
-          clearInterval(timerInterval); // Stop the timer interval
-          updateCounter(); // Update the counter one last time
-          console.log("Stop time recorded: " + stopTime);
+          reactTime = Date.now();
+          console.log("Stop time recorded: " + reactTime);
           
         }
-    
-        function updateCounter() {
-          var currentTime = Date.now();
-          var elapsedTime = currentTime - startTime;
-          document.getElementById("counter").innerText = "Count: " + elapsedTime + "ms";
+
+        function startTime(){
+          for (let i=0;i < 5; i++){
+            setTimeout(() => {
+              document.getElementById('counter').innerHTML = i;
+            }, ((4-i)*1000));
+          }
+          setTimeout(() => {
+          },4000)
+          if(!reactTime){
+            document.getElementById('target').innerHTML = "Too Slow";
+          }
+          else{
+            let endTime = Date.now();
+            diff=Math.abs(endTime-reactTime);
+            document.getElementById('target').innerHTML="Time was"+diff;
+          }
         }
+
+    
       </script>
+
+
+          <h2>Yashaswini Sarabu speed check</h2>
+          <div id="target">Your time: </div>
+          <div id="counter">Count: </div>
+
+          <button onclick="startTime()">startTimer</button>
+          <button onclick="recordTime()">Stop Timer</button>
 </body>
 </html>
