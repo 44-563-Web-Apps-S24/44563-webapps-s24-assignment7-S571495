@@ -33,6 +33,7 @@
 		<button onclick="makeNewDiv()">Add end</button>
         <button onclick="addFront()">Add Front</button>
         <button onclick="remove()">remove</button>
+        <button onclick="swap()">swap</button>
 	
 </body>
 <script>
@@ -70,6 +71,24 @@
 		container.insertBefore(element, container.firstChild);
 
     }
+
+    function swap() {
+		let swapeditems = document.getElementsByClassName("divlist");
+		let cont = document.getElementById("target");
+		let item1 = Math.floor((Math.random() * swapeditems.length)+1);
+		console.log(item1);
+		let item2 = Math.floor((Math.random() * swapeditems.length)+1);
+		console.log(item2);
+		let data1 = document.getElementsByClassName("divlist")[item1-1];
+		let data2 = document.getElementsByClassName("divlist")[item2-1];
+
+		if (swapeditems.length > 1) {
+			let tmp = data1.innerHTML;
+			data1.innerHTML = data2.innerHTML;
+			data2.innerHTML = tmp;
+		}
+
+	}
 
 </script>
 
